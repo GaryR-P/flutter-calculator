@@ -6,7 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +16,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-        home: MyHomePage(title: "Calculator"),
-      );
+      home: MyHomePage(title: "Calculator"),
+    );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -47,6 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
         } catch (e) {
           _result = "Error";
         }
+      } else if (value == "x^2") {
+        _expression += "^2";
       } else {
         _expression += value;
       }
@@ -97,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ["4", "5", "6", "*"],
               ["1", "2", "3", "-"],
               ["C", "0", "=", "+"],
+              ["x^2"], // Added square button
             ].map((row) {
               return Row(
                 children: row.map(_buildButton).toList(),
